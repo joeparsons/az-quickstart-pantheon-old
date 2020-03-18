@@ -1,0 +1,71 @@
+{
+    "name": "az-digital/az-quickstart-pantheon",
+    "description": "Arizona Quickstart Pantheon Upstream",
+    "type": "project",
+    "license": "GPL-2.0-only",
+    "authors": [
+        {
+            "name": "Arizona Digital",
+            "homepage": "http://uadigital.arizona.edu/",
+            "role": "Team"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "az-digital/az_quickstart": "dev-master",
+        "composer/installers": "^1.7.0",
+        "drupal/core-composer-scaffold": "^8",
+        "pantheon-systems/drupal-integrations": "^8",
+        "zaporylie/composer-drupal-optimizations": "^1.0.0"
+    },
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true
+    },
+    "scripts": {
+      "post-install-cmd": [
+          "@composer drupal:scaffold"
+      ],
+      "post-update-cmd": [],
+      "post-create-project-cmd": [
+          "@composer drupal:scaffold"
+      ]
+    },
+    "extra": {
+        "composer-exit-on-patch-failure": true,
+        "enable-patching": true,
+        "patchLevel": {
+            "drupal/core": "-p2"
+        },
+        "installer-paths": {
+            "web/core": ["type:drupal-core"],
+            "web/libraries/{$name}": ["type:drupal-library"],
+            "web/modules/contrib/{$name}": ["type:drupal-module"],
+            "web/profiles/contrib/{$name}": ["type:drupal-profile"],
+            "web/themes/contrib/{$name}": ["type:drupal-theme"],
+            "web/modules/custom/{$name}": ["type:drupal-custom-module"],
+            "web/profiles/custom/{$name}": ["type:drupal-custom-profile"],
+            "web/themes/custom/{$name}": ["type:drupal-custom-theme"],
+            "drush/Commands/contrib/{$name}": ["type:drupal-drush"]
+        },
+        "drupal-scaffold": {
+            "allowed-packages": [
+                "pantheon-systems/drupal-integrations"
+            ],
+            "gitignore": false,
+            "locations": {
+                "web-root": "web/"
+            }
+        }
+    }
+}
